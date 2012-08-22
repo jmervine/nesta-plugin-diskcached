@@ -94,12 +94,10 @@ module Nesta
 
   # Setup diskcached global right off the bat!
   class App
-    configure do
-      if Config.diskcached
-        $diskcached = Diskcached.new(Nesta::Config.diskcached_dir)
-      else
-        $diskcached = NoDiskcached.new
-      end
+    if Config.diskcached
+      $diskcached = Diskcached.new(Nesta::Config.diskcached_dir)
+    else
+      $diskcached = NoDiskcached.new
     end
   end
 
