@@ -66,7 +66,7 @@ module Nesta
     #
     # @param [String] cache store location
     def diskcached_dir
-      default = File.join(Env.root, "diskcached")
+      default = File.join(Nesta::Env.root, "diskcached")
       if settings.include?("diskcached_dir") 
 
         settings.diskcached_dir = case settings.diskcached_dir
@@ -80,7 +80,7 @@ module Nesta
 
           # everything else should start at nesta's root
           else
-            File.join(Env.root, settings.diskcached_dir)
+            File.join(Nesta::Env.root, settings.diskcached_dir)
           end
 
       else
@@ -96,7 +96,7 @@ module Nesta
   class App
     configure do
       if Config.diskcached
-        $diskcached = Diskcached.new(Config.diskcached_dir)
+        $diskcached = Diskcached.new(Nesta::Config.diskcached_dir)
       else
         $diskcached = NoDiskcached.new
       end
