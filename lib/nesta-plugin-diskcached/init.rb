@@ -97,7 +97,7 @@ module Nesta
   class Page
     def self.purge_cache 
       @@cache = {}
-      $diskcached.flush if $diskcached.responds_to? :flush
+      $diskcached.flush if $diskcached.respond_to? :flush
     end
   end
 
