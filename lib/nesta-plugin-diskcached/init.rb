@@ -70,11 +70,7 @@ module Nesta
     #
     # @param [Boolean] use diskcached?
     def self.diskcached
-      if settings.include?("diskcached")
-        settings.diskcached
-      else
-        true
-      end
+      from_environment("diskcached") || from_yaml("diskcached") || true
     end
 
     # Set default diskcached path or read from 
@@ -83,28 +79,16 @@ module Nesta
     # @param [String] cache store location
     def self.diskcached_dir
       default = File.join(Nesta::Env.root, "diskcached")
-      if settings.include?("diskcached_dir") 
+      set     = from_environment("diskcached_dir") || from_yaml("diskcached_dir") || default
 
-        settings.diskcached_dir = case settings.diskcached_dir
-          # don't allow root -- go go gadget default
-          when "/"
-            default
-
-          # starting at root is good though
-          when /^\//
-            settings.diskcached_dir
-
-          # everything else should start at nesta's root
-          else
-            File.join(Nesta::Env.root, settings.diskcached_dir)
-          end
-
-      else
-        # catch issues with a default
-        setings.diskcached_dir = default
+      case set
+      when "/"    # don't allow root -- go go gadget default
+        default
+      when /^\//  # starting at root is good though
+        set
+      else        # everything else should start at nesta's root
+        File.join(Nesta::Env.root, set)
       end
-
-      settings.diskcached_dir
     end
   end
 
