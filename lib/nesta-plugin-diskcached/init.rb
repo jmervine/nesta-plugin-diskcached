@@ -1,5 +1,10 @@
+# Top level Nesta module.
 module Nesta
+
+  # Nesta's existing Overrides for rendering.
   module Overrides
+
+    # Override renderers to include cacheing.
     module Renderers
 
       # Override haml to include diskcached
@@ -29,6 +34,7 @@ module Nesta
     end
   end
 
+  # Add diskcached configs and setup defaults.
   class Config
     @settings += %w[ diskcached diskcached_dir ]
 
@@ -60,8 +66,8 @@ module Nesta
     end
   end
 
+  # Setup diskcached global right off the bat!
   class App
-    # Setup diskcached global right off the bat!
     configure do
       if Config.diskcached
         $diskcached = Diskcached.new(Config.diskcache_dir)
@@ -75,7 +81,7 @@ module Nesta
   # erroring.
   class NoDiskcached
     # Pass threw when Diskcached is off.
-    def cache(*args) do
+    def cache(*args) 
       yield
     end
   end
