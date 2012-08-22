@@ -5,4 +5,4 @@ require 'diskcached'
 # more of an override and nothing is actually 
 # being plugged in.
 #
-# Nesta::Plugin.register(__FILE__)
+Nesta::Plugin.register(__FILE__)
