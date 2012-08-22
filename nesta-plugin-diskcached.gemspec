@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "nesta-plugin-diskcached"
   gem.require_paths = ["lib"]
-  gem.version       = Nesta::Plugin::Diskcached::VERSION
+  gem.version       = Nesta::Plugin::Diskcache::VERSION
   gem.add_dependency("nesta", ">= 0.9.11")
   gem.add_dependency("diskcached", ">= 1.1.0")
   gem.add_development_dependency("rake")

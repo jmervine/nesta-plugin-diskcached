@@ -4,8 +4,8 @@ module Nesta
   # Nesta's Plugin module.
   module Plugin
 
-    # Diskcached Plugin
-    module Diskcached
+    # Diskcache Plugin
+    module Diskcache
 
       # Setup diskcached global right off the bat!
       def self.init
@@ -13,14 +13,14 @@ module Nesta
           STDOUT.puts Nesta::Config.diskcached_dir
           $diskcached = Diskcached.new(Nesta::Config.diskcached_dir)
         else
-          $diskcached = NoDiskcached.new
+          $diskcached = NoDiskcache.new
         end
       end
 
-      # Override Diskcached when turned off without
+      # Override Diskcache when turned off without
       # erroring.
-      class NoDiskcached
-        # Pass threw when Diskcached is off.
+      class NoDiskcache
+        # Pass threw when Diskcache is off.
         def cache(*args) 
           yield
         end
@@ -109,7 +109,7 @@ module Nesta
   end
 
   # Nesta Page override for purge_cache to include
-  # Diskcached.flush
+  # Diskcache.flush
   class Page
     def self.purge_cache 
       @@cache = {}
@@ -120,7 +120,7 @@ module Nesta
   # Setup diskcached global right off the bat!
   class App
     configure do 
-      Nesta::Plugin::Diskcached.init
+      Nesta::Plugin::Diskcache.init
     end
   end
 
