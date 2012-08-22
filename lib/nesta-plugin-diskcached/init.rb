@@ -66,14 +66,29 @@ module Nesta
     #
     # @param [String] cache store location
     def diskcached_dir
-      if settings.include?("diskcached_dir")
-        unless settings.diskcached_dir =~ /^\//
-          settings.diskcached_dir = File.join(Env.root, settings.diskcached_dir)
-        end
-        settings.diskcached_dir
+      default = File.join(Env.root, "diskcached")
+      if settings.include?("diskcached_dir") 
+
+        settings.diskcached_dir = case settings.diskcached_dir
+          # don't allow root -- go go gadget default
+          when "/"
+            default
+
+          # starting at root is good though
+          when /^\//
+            settings.diskcached_dir
+
+          # everything else should start at nesta's root
+          else
+            File.join(Env.root, settings.diskcached_dir)
+          end
+
       else
-        File.join(Env.root, "diskcached")
+        # catch issues with a default
+        setings.diskcached_dir = default
       end
+
+      settings.diskcached_dir
     end
   end
 
