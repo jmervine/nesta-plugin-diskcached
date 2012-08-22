@@ -4,9 +4,9 @@ require File.expand_path('../lib/nesta-plugin-diskcached/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Joshua Mervine"]
   gem.email         = ["joshua@mervine.net"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{A Nesta plugin for disk cacheing via diskcached.}
+  gem.summary       = %q{A Nesta plugin for disk cacheing via diskcached. Also see: http://diskcached.rubyops.net/}
+  gem.homepage      = "http://github.com/jmervine/nesta-plugin-diskcached"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
@@ -14,6 +14,9 @@ Gem::Specification.new do |gem|
   gem.name          = "nesta-plugin-diskcached"
   gem.require_paths = ["lib"]
   gem.version       = Nesta::Plugin::Diskcached::VERSION
-  s.add_dependency("nesta", ">= 0.9.11")
-  s.add_development_dependency("rake")
+  gem.add_dependency("nesta", ">= 0.9.11")
+  gem.add_dependency("diskcached", ">= 1.1.0")
+  gem.add_development_dependency("rake")
+  gem.add_development_dependency("yard")
 end
+

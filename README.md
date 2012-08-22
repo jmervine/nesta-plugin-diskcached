@@ -20,7 +20,27 @@ Or install it yourself as:
 
 ## Usage
 
-> TBD
+Add optional params to your config/config.yml
+
+  diskcached: true # default
+  diskcached_dir: /tmp/diskcached 
+    # defaults to "Nesta::Env.root/diskcached"
+    # 
+    # Values added for 'diskcached_dir' should
+    # be a full path starting with '/', otherwise
+    # Nesta::Env.root will be added to the beginning
+    # of the path string.
+
+## Notes
+
+1. This has not been tested with nesta-plugin-simplicity and does
+   not include overrides to include cacheing for anything Nesta's
+   default renderers, namely:
+   - haml
+   - erb
+   - scss
+   - sass
+   - stylesheet
 
 ## Contributing
 
