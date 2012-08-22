@@ -69,7 +69,7 @@ module Nesta
     # config file if present.
     #
     # @param [Boolean] use diskcached?
-    def diskcached
+    def self.diskcached
       if settings.include?("diskcached")
         settings.diskcached
       else
@@ -81,7 +81,7 @@ module Nesta
     # config file if present.
     #
     # @param [String] cache store location
-    def diskcached_dir
+    def self.diskcached_dir
       default = File.join(Nesta::Env.root, "diskcached")
       if settings.include?("diskcached_dir") 
 
