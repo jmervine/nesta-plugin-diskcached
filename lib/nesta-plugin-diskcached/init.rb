@@ -4,12 +4,28 @@ module Nesta
   # Nesta's Plugin module.
   module Plugin
 
-    # Diskcached Plugin, which doesn't really exists
-    # as everything is done as overrides. I'm keeping
-    # it for Nesta's plugin interface compatability.
+    # Diskcached Plugin
     module Diskcached
-    end
 
+      # Setup diskcached global right off the bat!
+      def init
+        if Nesta::Config.diskcached
+          STDOUT.puts Nesta::Config.diskcached_dir
+          $diskcached = Diskcached.new(Nesta::Config.diskcached_dir)
+        else
+          $diskcached = NoDiskcached.new
+        end
+      end
+
+      # Override Diskcached when turned off without
+      # erroring.
+      class NoDiskcached
+        # Pass threw when Diskcached is off.
+        def cache(*args) 
+          yield
+        end
+      end
+    end
   end
 
   # Nesta's existing Overrides for rendering.
@@ -92,21 +108,20 @@ module Nesta
     end
   end
 
-  # Setup diskcached global right off the bat!
-  class App
-    if Config.diskcached
-      $diskcached = Diskcached.new(Nesta::Config.diskcached_dir)
-    else
-      $diskcached = NoDiskcached.new
+  # Nesta Page override for purge_cache to include
+  # Diskcached.flush
+  class Page
+    def self.purge_cache 
+      @@cache = {}
+      $diskcached.flush if $diskcached.responds_to? :flush
     end
   end
 
-  # Override Diskcached when turned off without
-  # erroring.
-  class NoDiskcached
-    # Pass threw when Diskcached is off.
-    def cache(*args) 
-      yield
+  # Setup diskcached global right off the bat!
+  class App
+    configure do 
+      Nesta::Plugin::Diskcached.init
     end
   end
+
 end
