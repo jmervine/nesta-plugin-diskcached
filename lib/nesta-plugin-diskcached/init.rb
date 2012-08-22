@@ -36,27 +36,27 @@ module Nesta
 
       # Override haml to include diskcached
       def haml *args
-        $diskcached.cache(args.to_s) { super(args) }
+        $diskcached.cache(args.to_s) { super(*args) }
       end
 
       # Override erb to include diskcached
       def erb *args
-        $diskcached.cache(args.to_s) { super(args) }
+        $diskcached.cache(args.to_s) { super(*args) }
       end
 
       # Override scss to include diskcached
       def scss *args
-        $diskcached.cache(args.to_s) { super(args) }
+        $diskcached.cache(args.to_s) { super(*args) }
       end
 
       # Override sass to include diskcached
       def sass *args
-        $diskcached.cache(args.to_s) { super(args) }
+        $diskcached.cache(args.to_s) { super(*args) }
       end
 
       # Override stylesheet to include diskcached
       def stylesheet *args
-        $diskcached.cache(args.to_s) { super(args) }
+        $diskcached.cache(args.to_s) { super(*args) }
       end
     end
   end
