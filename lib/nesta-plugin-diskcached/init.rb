@@ -81,7 +81,7 @@ module Nesta
   class App
     configure do
       if Config.diskcached
-        $diskcached = Diskcached.new(Config.diskcache_dir)
+        $diskcached = Diskcached.new(Config.diskcached_dir)
       else
         $diskcached = NoDiskcached.new
       end
