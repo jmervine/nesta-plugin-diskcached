@@ -6,8 +6,6 @@ A Nesta Plugin for disk cache via diskcached. It is an alternative to using Nest
 
 ## Installation
 
-> ONCE COMPLETED -- This doesn't work yet!
-
 Add this line to your application's Gemfile:
 
     gem 'nesta-plugin-diskcached'
