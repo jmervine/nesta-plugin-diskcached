@@ -1,8 +1,8 @@
 # Nesta::Plugin::Diskcached
 
-### [Documentation](http://jmervine.github.com/nesta-plugin-diskcached/doc/index.html) | [NestaCMS.com](http://nestacms.com) | [Diskcached](http://diskcached.rubyops.net/)
+### [Documentation](http://jmervine.github.com/nesta-plugin-diskcached/doc/index.html) | [Why?](https://github.com/jmervine/nesta-plugin-diskcached/blob/master/WHY.md) | [NestaCMS.com](http://nestacms.com) | [Diskcached](http://diskcached.rubyops.net/)
 
-A Nesta Plugin for disk cache via diskcached.
+A Nesta Plugin for disk cache via diskcached. It is an alternative to using Nesta's built in Sinatra::Cache, which wasn't working quite right for me.
 
 ## Installation
 
@@ -25,6 +25,7 @@ Or install it yourself as:
 Add optional params to your config/config.yml
 
   diskcached: true # default
+  diskcached_timeout: 3600 # default (in seconds)
   diskcached_dir: /tmp/diskcached 
     # defaults to "Nesta::Env.root/diskcached"
     # 

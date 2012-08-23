@@ -11,7 +11,7 @@ module Nesta
       def self.init
         if Nesta::Config.diskcached
           STDOUT.puts Nesta::Config.diskcached_dir
-          $diskcached = Diskcached.new(Nesta::Config.diskcached_dir)
+          $diskcached = Diskcached.new(Nesta::Config.diskcached_dir, Nesta::Config.diskcached_timeout)
         else
           $diskcached = NoDiskcache.new
         end
@@ -55,7 +55,7 @@ module Nesta
 
   # Add diskcached configs and setup defaults.
   class Config
-    @settings += %w[ diskcached diskcached_dir ]
+    @settings += %w[ diskcached diskcached_dir diskcached_timeout ]
 
     # Set default cache usage to true, but read from 
     # config file if present.
@@ -81,6 +81,14 @@ module Nesta
       else        # everything else should start at nesta's root
         File.join(Nesta::Env.root, set)
       end
+    end
+
+    # Set default cache timeout for diskcached or read
+    # from config file if present.
+    #
+    # @param [Fixnum] diskcached timeout
+    def self.diskcached_timeout
+      from_environment("diskcached") || from_yaml("diskcached") || 3600
     end
   end
 
