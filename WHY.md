@@ -32,7 +32,10 @@
 ### Without Diskcached
 
         httperf --verbose --client=0/1 --server=localhost --port=8080 --uri=/ --send-buffer=4096 --recv-buffer=16384 --num-conns=100 --num-calls=1
-        httperf: maximum number of open descriptors = 1024reply-rate = 9.6     Maximum connect burst length: 1Total: connections 100 requests 100 replies 100 test-duration 9.898 s
+        Maximum connect burst length: 1
+        
+        Total: connections 100 requests 100 replies 100 test-duration 9.898 s
+        
         Connection rate: 10.1 conn/s (99.0 ms/conn, <=1 concurrent connections)
         Connection time [ms]: min 83.0 avg 99.0 max 155.0 median 96.5 stddev 12.6
         Connection time [ms]: connect 0.1
