@@ -41,6 +41,11 @@ Add optional params to your config/config.yml
    default renderers, namely:
    - haml
    - erb
+2. Currently this creates cache files for everything passed through
+   rendering, which mean it creates a lot of extra and unused files.
+   Ideally, it would only create a file for the final rendered result.
+   It really doesn't hurt performance, but is just a bit ugly.
+   
 
 ## Contributing
 

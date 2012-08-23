@@ -114,6 +114,10 @@ default renderers, namely:
 <li>erb</li>
 </ul>
 </li>
+<li>Currently this creates cache files for everything passed through
+rendering, which mean it creates a lot of extra and unused files.
+Ideally, it would only create a file for the final rendered result.
+It really doesn't hurt performance, but is just a bit ugly.</li>
 </ol>
 
 
@@ -130,7 +134,7 @@ default renderers, namely:
 </div></div>
 
     <div id="footer">
-  Generated on Thu Aug 23 01:14:40 2012 by
+  Generated on Thu Aug 23 01:20:41 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>
