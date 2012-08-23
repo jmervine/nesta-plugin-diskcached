@@ -40,8 +40,6 @@ Add optional params to your config/config.yml
    default renderers, namely:
    - haml
    - erb
-   - scss
-   - sass
 
 ## Contributing
 
