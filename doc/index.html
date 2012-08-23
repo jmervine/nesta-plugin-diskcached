@@ -69,8 +69,6 @@
 
 <h2>Installation</h2>
 
-<blockquote><p>ONCE COMPLETED -- This doesn't work yet!</p></blockquote>
-
 <p>Add this line to your application's Gemfile:</p>
 
 <pre class="code ruby"><code><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>nesta-plugin-diskcached</span><span class='tstring_end'>'</span></span>
@@ -90,17 +88,16 @@
 
 <p>Add optional params to your config/config.yml</p>
 
-<p>  diskcached: true # default
-  diskcached_timeout: 3600 # default (in seconds)
-  diskcached_dir: /tmp/diskcached</p>
-
-<pre class="code ruby"><code><span class='comment'># defaults to &quot;Nesta::Env.root/diskcached&quot;
-</span><span class='comment'># 
-</span><span class='comment'># Values added for 'diskcached_dir' should
-</span><span class='comment'># be a full path starting with '/', otherwise
-</span><span class='comment'># Nesta::Env.root will be added to the beginning
-</span><span class='comment'># of the path string.
-</span></code></pre>
+<pre class="code ruby"><code>diskcached: true # default
+diskcached_timeout: 3600 # default (in seconds)
+diskcached_dir: /tmp/diskcached 
+  # defaults to &quot;Nesta::Env.root/diskcached&quot;
+  # 
+  # Values added for 'diskcached_dir' should
+  # be a full path starting with '/', otherwise
+  # Nesta::Env.root will be added to the beginning
+  # of the path string.
+</code></pre>
 
 <h2>Notes</h2>
 
@@ -134,7 +131,7 @@ It really doesn't hurt performance, but is just a bit ugly.</li>
 </div></div>
 
     <div id="footer">
-  Generated on Thu Aug 23 01:24:02 2012 by
+  Generated on Thu Aug 23 01:32:55 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>
