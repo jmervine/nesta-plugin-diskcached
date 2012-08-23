@@ -4,7 +4,7 @@
 
 ### With Diskcached
 
-        httperf --client=0/1 --server=localhost --port=8080 --uri=/ --send-buffer=4096 --recv-buffer=16384 --num-conns=100 --num-calls=1
+	httperf --client=0/1 --server=localhost --port=8080 --uri=/ --send-buffer=4096 --recv-buffer=16384 --num-conns=100 --num-calls=1
 	Maximum connect burst length: 1
 
 	Total: connections 100 requests 100 replies 100 test-duration 1.186 s
