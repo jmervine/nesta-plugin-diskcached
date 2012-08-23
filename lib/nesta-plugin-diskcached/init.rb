@@ -36,12 +36,12 @@ module Nesta
 
       # Override haml to include diskcached
       def haml *args
-        $diskcached.cache(Digest::SHA1.hexdigest(request.url)) { super(*args) }
+        $diskcached.cache(Digest::SHA1.hexdigest(request.url+args.to_s)) { super(*args) }
       end
 
       # Override erb to include diskcached
       def erb *args
-        $diskcached.cache(Digest::SHA1.hexdigest(request.url)) { super(*args) }
+        $diskcached.cache(Digest::SHA1.hexdigest(request.url+args.to_s)) { super(*args) }
       end
 
     end
