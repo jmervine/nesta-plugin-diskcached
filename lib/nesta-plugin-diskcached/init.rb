@@ -10,7 +10,6 @@ module Nesta
       # Setup diskcached global right off the bat!
       def self.init
         if Nesta::Config.diskcached
-          STDOUT.puts Nesta::Config.diskcached_dir
           $diskcached = Diskcached.new(Nesta::Config.diskcached_dir, Nesta::Config.diskcached_timeout)
         else
           $diskcached = NoDiskcache.new

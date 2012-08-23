@@ -126,7 +126,7 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.0.1</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.0.2</span><span class='tstring_end'>&quot;</span></span></pre></dd>
       
     </dl>
   
@@ -210,15 +210,13 @@
 14
 15
 16
-17
-18</pre>
+17</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_init'>init</span>
   <span class='kw'>if</span> <span class='const'>Nesta</span><span class='op'>::</span><span class='const'>Config</span><span class='period'>.</span><span class='id identifier rubyid_diskcached'>diskcached</span>
-    <span class='const'>STDOUT</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='const'>Nesta</span><span class='op'>::</span><span class='const'>Config</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_dir'>diskcached_dir</span>
     <span class='gvar'>$diskcached</span> <span class='op'>=</span> <span class='const'>Diskcached</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Nesta</span><span class='op'>::</span><span class='const'>Config</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_dir'>diskcached_dir</span><span class='comma'>,</span> <span class='const'>Nesta</span><span class='op'>::</span><span class='const'>Config</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_timeout'>diskcached_timeout</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='gvar'>$diskcached</span> <span class='op'>=</span> <span class='const'>NoDiskcache</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -234,7 +232,7 @@
 </div>
 
     <div id="footer">
-  Generated on Thu Aug 23 01:20:42 2012 by
+  Generated on Thu Aug 23 01:24:02 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>
