@@ -91,6 +91,9 @@ module Nesta
   class App
     configure do 
       Nesta::Plugin::Diskcache.init
+
+      # ensure caches are empty
+      Nesta::Page.purge_cache
     end
   end
 
