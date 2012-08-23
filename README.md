@@ -22,15 +22,15 @@ Or install it yourself as:
 
 Add optional params to your config/config.yml
 
-  diskcached: true # default
-  diskcached_timeout: 3600 # default (in seconds)
-  diskcached_dir: /tmp/diskcached 
-    # defaults to "Nesta::Env.root/diskcached"
-    # 
-    # Values added for 'diskcached_dir' should
-    # be a full path starting with '/', otherwise
-    # Nesta::Env.root will be added to the beginning
-    # of the path string.
+    diskcached: true # default
+    diskcached_timeout: 3600 # default (in seconds)
+    diskcached_dir: /tmp/diskcached 
+      # defaults to "Nesta::Env.root/diskcached"
+      # 
+      # Values added for 'diskcached_dir' should
+      # be a full path starting with '/', otherwise
+      # Nesta::Env.root will be added to the beginning
+      # of the path string.
 
 ## Notes
 
