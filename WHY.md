@@ -17,7 +17,10 @@
 	Request rate: 84.3 req/s (11.9 ms/req)
 	Request size [B]: 62.0
 
-	Reply rate [replies/s]: min 0.0 avg 0.0 max 0.0 stddev 0.0 (0 samples)Reply time [ms]: response 11.5 transfer 0.3Reply size [B]: header 308.0 content 5203.0 footer 0.0 (total 5511.0)Reply status: 1xx=0 2xx=100 3xx=0 4xx=0 5xx=0
+	Reply rate [replies/s]: min 0.0 avg 0.0 max 0.0 stddev 0.0 (0 samples)
+	Reply time [ms]: response 11.5 transfer 0.3
+	Reply size [B]: header 308.0 content 5203.0 footer 0.0 (total 5511.0)
+	Reply status: 1xx=0 2xx=100 3xx=0 4xx=0 5xx=0
 
 	CPU time [s]: user 0.63 system 0.55 (user 53.2% system 46.6% total 99.8%)
 	Net I/O: 458.7 KB/s (3.8*10^6 bps)
