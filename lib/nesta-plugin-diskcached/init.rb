@@ -88,7 +88,7 @@ module Nesta
     #
     # @param [Fixnum] diskcached timeout
     def self.diskcached_timeout
-      from_environment("diskcached") || from_yaml("diskcached") || 3600
+      from_environment("diskcached_timeout") || from_yaml("diskcached_timeout") || 3600
     end
   end
 
