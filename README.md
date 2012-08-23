@@ -42,7 +42,6 @@ Add optional params to your config/config.yml
    - erb
    - scss
    - sass
-   - stylesheet
 
 ## Contributing
 

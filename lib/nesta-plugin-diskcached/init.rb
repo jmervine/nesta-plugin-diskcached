@@ -54,10 +54,6 @@ module Nesta
         $diskcached.cache(args.to_s) { super(*args) }
       end
 
-      # Override stylesheet to include diskcached
-      def stylesheet *args
-        $diskcached.cache(args.to_s) { super(*args) }
-      end
     end
   end
 
