@@ -113,7 +113,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#erb-instance_method" title="#erb (instance method)">- (Object) <strong>erb</strong>(*args) </a>
+      <a href="#erb-instance_method" title="#erb (instance method)">- (Object) <strong>erb</strong>(template, options = {}, locals = {}) </a>
     
 
     
@@ -137,7 +137,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#haml-instance_method" title="#haml (instance method)">- (Object) <strong>haml</strong>(*args) </a>
+      <a href="#haml-instance_method" title="#haml (instance method)">- (Object) <strong>haml</strong>(template, options = {}, locals = {}) </a>
     
 
     
@@ -158,78 +158,6 @@
 </li>
 
       
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#sass-instance_method" title="#sass (instance method)">- (Object) <strong>sass</strong>(*args) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Override sass to include diskcached.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#scss-instance_method" title="#scss (instance method)">- (Object) <strong>scss</strong>(*args) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Override scss to include diskcached.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#stylesheet-instance_method" title="#stylesheet (instance method)">- (Object) <strong>stylesheet</strong>(*args) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Override stylesheet to include diskcached.</p>
-</div></span>
-  
-</li>
-
-      
     </ul>
   
 
@@ -242,7 +170,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="erb-instance_method">
   
-    - (<tt>Object</tt>) <strong>erb</strong>(*args) 
+    - (<tt>Object</tt>) <strong>erb</strong>(template, options = {}, locals = {}) 
   
 
   
@@ -265,15 +193,21 @@
       <pre class="lines">
 
 
-16
-17
-18</pre>
+46
+47
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 46</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_erb'>erb</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
-  <span class='gvar'>$diskcached</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_erb'>erb</span><span class='lparen'>(</span><span class='id identifier rubyid_template'>template</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_locals'>locals</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='gvar'>$diskcached</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='const'>Digest</span><span class='op'>::</span><span class='const'>SHA1</span><span class='period'>.</span><span class='id identifier rubyid_hexdigest'>hexdigest</span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='op'>+</span><span class='id identifier rubyid_template'>template</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='op'>+</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='op'>+</span><span class='id identifier rubyid_locals'>locals</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_defaults'>defaults</span><span class='comma'>,</span> <span class='id identifier rubyid_engine'>engine</span> <span class='op'>=</span> <span class='const'>Overrides</span><span class='period'>.</span><span class='id identifier rubyid_render_options'>render_options</span><span class='lparen'>(</span><span class='id identifier rubyid_template'>template</span><span class='comma'>,</span> <span class='symbol'>:erb</span><span class='rparen'>)</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_template'>template</span><span class='comma'>,</span> <span class='id identifier rubyid_defaults'>defaults</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_locals'>locals</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -283,7 +217,7 @@
       <div class="method_details ">
   <h3 class="signature " id="haml-instance_method">
   
-    - (<tt>Object</tt>) <strong>haml</strong>(*args) 
+    - (<tt>Object</tt>) <strong>haml</strong>(template, options = {}, locals = {}) 
   
 
   
@@ -306,138 +240,21 @@
       <pre class="lines">
 
 
-11
-12
-13</pre>
+38
+39
+40
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 38</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_haml'>haml</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
-  <span class='gvar'>$diskcached</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="sass-instance_method">
-  
-    - (<tt>Object</tt>) <strong>sass</strong>(*args) 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Override sass to include diskcached</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-26
-27
-28</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 26</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_sass'>sass</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
-  <span class='gvar'>$diskcached</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="scss-instance_method">
-  
-    - (<tt>Object</tt>) <strong>scss</strong>(*args) 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Override scss to include diskcached</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-21
-22
-23</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 21</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_scss'>scss</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
-  <span class='gvar'>$diskcached</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="stylesheet-instance_method">
-  
-    - (<tt>Object</tt>) <strong>stylesheet</strong>(*args) 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Override stylesheet to include diskcached</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-31
-32
-33</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 31</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_stylesheet'>stylesheet</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
-  <span class='gvar'>$diskcached</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_haml'>haml</span><span class='lparen'>(</span><span class='id identifier rubyid_template'>template</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_locals'>locals</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='gvar'>$diskcached</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span><span class='lparen'>(</span><span class='const'>Digest</span><span class='op'>::</span><span class='const'>SHA1</span><span class='period'>.</span><span class='id identifier rubyid_hexdigest'>hexdigest</span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='op'>+</span><span class='id identifier rubyid_template'>template</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='op'>+</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='op'>+</span><span class='id identifier rubyid_locals'>locals</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_defaults'>defaults</span><span class='comma'>,</span> <span class='id identifier rubyid_engine'>engine</span> <span class='op'>=</span> <span class='const'>Overrides</span><span class='period'>.</span><span class='id identifier rubyid_render_options'>render_options</span><span class='lparen'>(</span><span class='id identifier rubyid_template'>template</span><span class='comma'>,</span> <span class='symbol'>:haml</span><span class='rparen'>)</span>
+    <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_template'>template</span><span class='comma'>,</span> <span class='id identifier rubyid_defaults'>defaults</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_locals'>locals</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -449,7 +266,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Aug 22 17:32:33 2012 by
+  Generated on Thu Aug 23 01:10:52 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>

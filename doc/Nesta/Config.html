@@ -119,7 +119,7 @@
 
   
     <h2>
-      Instance Method Summary
+      Class Method Summary
       <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
     </h2>
 
@@ -128,7 +128,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#diskcached-instance_method" title="#diskcached (instance method)">- (Object) <strong>diskcached</strong> </a>
+      <a href="#diskcached-class_method" title="diskcached (class method)">+ (Object) <strong>diskcached</strong> </a>
     
 
     
@@ -152,7 +152,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#diskcached_dir-instance_method" title="#diskcached_dir (instance method)">- (Object) <strong>diskcached_dir</strong> </a>
+      <a href="#diskcached_dir-class_method" title="diskcached_dir (class method)">+ (Object) <strong>diskcached_dir</strong> </a>
     
 
     
@@ -173,19 +173,44 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#diskcached_timeout-class_method" title="diskcached_timeout (class method)">+ (Object) <strong>diskcached_timeout</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set default cache timeout for diskcached or read from config file if
+present.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
 
 
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="diskcached-instance_method">
+  <h3 class="signature first" id="diskcached-class_method">
   
-    - (<tt>Object</tt>) <strong>diskcached</strong> 
+    + (<tt>Object</tt>) <strong>diskcached</strong> 
   
 
   
@@ -228,23 +253,15 @@
       <pre class="lines">
 
 
-45
-46
-47
-48
-49
-50
-51</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 64</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_diskcached'>diskcached</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_diskcached'>diskcached</span>
-  <span class='kw'>else</span>
-    <span class='kw'>true</span>
-  <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_diskcached'>diskcached</span>
+  <span class='id identifier rubyid_from_environment'>from_environment</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_from_yaml'>from_yaml</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -252,9 +269,9 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="diskcached_dir-instance_method">
+  <h3 class="signature " id="diskcached_dir-class_method">
   
-    - (<tt>Object</tt>) <strong>diskcached_dir</strong> 
+    + (<tt>Object</tt>) <strong>diskcached_dir</strong> 
   
 
   
@@ -297,29 +314,97 @@
       <pre class="lines">
 
 
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66</pre>
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 72</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_diskcached_dir'>diskcached_dir</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached_dir</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-    <span class='kw'>unless</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_dir'>diskcached_dir</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\/</span><span class='regexp_end'>/</span></span>
-      <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_dir'>diskcached_dir</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>Env</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='comma'>,</span> <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_dir'>diskcached_dir</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_dir'>diskcached_dir</span>
-  <span class='kw'>else</span>
-    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>Env</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_dir'>diskcached_dir</span>
+  <span class='id identifier rubyid_default'>default</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>Nesta</span><span class='op'>::</span><span class='const'>Env</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_set'>set</span>     <span class='op'>=</span> <span class='id identifier rubyid_from_environment'>from_environment</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached_dir</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_from_yaml'>from_yaml</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached_dir</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_default'>default</span>
+
+  <span class='kw'>case</span> <span class='id identifier rubyid_set'>set</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>    <span class='comment'># don't allow root -- go go gadget default
+</span>    <span class='id identifier rubyid_default'>default</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\/</span><span class='regexp_end'>/</span></span>  <span class='comment'># starting at root is good though
+</span>    <span class='id identifier rubyid_set'>set</span>
+  <span class='kw'>else</span>        <span class='comment'># everything else should start at nesta's root
+</span>    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>Nesta</span><span class='op'>::</span><span class='const'>Env</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='comma'>,</span> <span class='id identifier rubyid_set'>set</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="diskcached_timeout-class_method">
+  
+    + (<tt>Object</tt>) <strong>diskcached_timeout</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set default cache timeout for diskcached or read from config file if
+present.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>diskcached</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>timeout</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 90</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_timeout'>diskcached_timeout</span>
+  <span class='id identifier rubyid_from_environment'>from_environment</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_from_yaml'>from_yaml</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='int'>3600</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -331,7 +416,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Aug 22 17:32:33 2012 by
+  Generated on Thu Aug 23 01:10:52 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>

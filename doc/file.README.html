@@ -63,9 +63,9 @@
 
     <div id="content"><div id='filecontents'><h1>Nesta::Plugin::Diskcached</h1>
 
-<h3><a href="http://jmervine.github.com/nesta-plugin-diskcached/doc/index.html">Documentation</a> | <a href="http://nestacms.com">NestaCMS.com</a> | <a href="http://diskcached.rubyops.net/">Diskcached</a></h3>
+<h3><a href="http://jmervine.github.com/nesta-plugin-diskcached/doc/index.html">Documentation</a> | <a href="https://github.com/jmervine/nesta-plugin-diskcached/blob/master/WHY.md">Why?</a> | <a href="http://nestacms.com">NestaCMS.com</a> | <a href="http://diskcached.rubyops.net/">Diskcached</a></h3>
 
-<p>A Nesta Plugin for disk cache via diskcached.</p>
+<p>A Nesta Plugin for disk cache via diskcached. It is an alternative to using Nesta's built in Sinatra::Cache, which wasn't working quite right for me.</p>
 
 <h2>Installation</h2>
 
@@ -91,6 +91,7 @@
 <p>Add optional params to your config/config.yml</p>
 
 <p>  diskcached: true # default
+  diskcached_timeout: 3600 # default (in seconds)
   diskcached_dir: /tmp/diskcached</p>
 
 <pre class="code ruby"><code><span class='comment'># defaults to &quot;Nesta::Env.root/diskcached&quot;
@@ -111,9 +112,6 @@ default renderers, namely:
 <ul>
 <li>haml</li>
 <li>erb</li>
-<li>scss</li>
-<li>sass</li>
-<li>stylesheet</li>
 </ul>
 </li>
 </ol>
@@ -132,7 +130,7 @@ default renderers, namely:
 </div></div>
 
     <div id="footer">
-  Generated on Wed Aug 22 17:32:33 2012 by
+  Generated on Thu Aug 23 01:10:52 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>
