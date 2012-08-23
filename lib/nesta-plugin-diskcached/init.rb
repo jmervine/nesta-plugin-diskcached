@@ -35,14 +35,20 @@ module Nesta
     module Renderers
 
       # Override haml to include diskcached
-      def haml *args
-        $diskcached.cache(Digest::SHA1.hexdigest(request.url+args.to_s)) { super(*args) }
-      end
-
+       def haml(template, options = {}, locals = {})
+         $diskcached.cache(Digest::SHA1.hexdigest(request.url+template.to_s+options.to_s+locals.to_s) do
+           defaults, engine = Overrides.render_options(template, :haml)
+           super(template, defaults.merge(options), locals)
+         end
+       end
+ 
       # Override erb to include diskcached
-      def erb *args
-        $diskcached.cache(Digest::SHA1.hexdigest(request.url+args.to_s)) { super(*args) }
-      end
+       def erb(template, options = {}, locals = {})
+         $diskcached.cache(Digest::SHA1.hexdigest(request.url+template.to_s+options.to_s+locals.to_s) do
+           defaults, engine = Overrides.render_options(template, :erb)
+           super(template, defaults.merge(options), locals)
+         end
+       end                  
 
     end
   end
