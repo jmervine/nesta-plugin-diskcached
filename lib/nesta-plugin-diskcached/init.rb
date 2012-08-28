@@ -69,7 +69,7 @@ module Nesta
     #
     # @param [String] cache store location
     def self.diskcached_dir
-      default = File.join(Nesta::Env.root, "diskcached")
+      default = "/tmp/.nesta-diskcache"
       set     = from_environment("diskcached_dir") || from_yaml("diskcached_dir") || default
 
       case set
@@ -80,6 +80,9 @@ module Nesta
       else        # everything else should start at nesta's root
         File.join(Nesta::Env.root, set)
       end
+    rescue 
+      # fail safe
+      default
     end
 
     # Set default cache timeout for diskcached or read
