@@ -326,13 +326,16 @@ present.</p>
 80
 81
 82
-83</pre>
+83
+84
+85
+86</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_dir'>diskcached_dir</span>
-  <span class='id identifier rubyid_default'>default</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>Nesta</span><span class='op'>::</span><span class='const'>Env</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_default'>default</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/tmp/.nesta-diskcache</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_set'>set</span>     <span class='op'>=</span> <span class='id identifier rubyid_from_environment'>from_environment</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached_dir</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_from_yaml'>from_yaml</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached_dir</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_default'>default</span>
 
   <span class='kw'>case</span> <span class='id identifier rubyid_set'>set</span>
@@ -343,6 +346,9 @@ present.</p>
   <span class='kw'>else</span>        <span class='comment'># everything else should start at nesta's root
 </span>    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>Nesta</span><span class='op'>::</span><span class='const'>Env</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span><span class='comma'>,</span> <span class='id identifier rubyid_set'>set</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
+<span class='kw'>rescue</span> 
+  <span class='comment'># fail safe
+</span>  <span class='id identifier rubyid_default'>default</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -396,12 +402,12 @@ present.</p>
       <pre class="lines">
 
 
-89
-90
-91</pre>
+92
+93
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/nesta-plugin-diskcached/init.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_diskcached_timeout'>diskcached_timeout</span>
   <span class='id identifier rubyid_from_environment'>from_environment</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached_timeout</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_from_yaml'>from_yaml</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>diskcached_timeout</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='int'>3600</span>
@@ -416,7 +422,7 @@ present.</p>
 </div>
 
     <div id="footer">
-  Generated on Thu Aug 23 01:32:55 2012 by
+  Generated on Wed Aug 29 22:48:58 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>
